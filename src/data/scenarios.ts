@@ -1,0 +1,168 @@
+import { ScenarioQuestion } from '../types';
+
+export const SCENARIO_QUESTIONS: ScenarioQuestion[] = [
+  {
+    id: 'scenario-1-serving-trap',
+    title: 'Tình huống 1: Cạm bẫy "Chỉ 90 kcal!"',
+    badge: 'Khẩu phần & Năng lượng',
+    situation: 'Bạn Minh mua một gói khoai tây sấy 75g ở căng tin. Mặt trước bao bì in dòng chữ rất to: "Chỉ 90 kcal!". Minh định ăn hết cả gói một mình trong giờ ra chơi vì nghĩ năng lượng rất thấp.',
+    labelSnippet: {
+      serving: '25 g (khoảng 15 lát khoai tây) - 3 khẩu phần / gói',
+      energy: '90 kcal / 1 khẩu phần',
+      notes: 'Khối lượng tịnh: 75 g',
+    },
+    question: 'Em hãy tư vấn cho Minh cách hiểu đúng về gói khoai tây này trước khi ăn.',
+    options: [
+      {
+        id: 'opt-1-a',
+        actionText: 'Nói Minh cứ yên tâm ăn hết cả gói vì nhà sản xuất đã ghi rõ chỉ có 90 kcal.',
+        isCorrectAction: false,
+      },
+      {
+        id: 'opt-1-b',
+        actionText: 'Nhắc Minh kiểm tra số khẩu phần: 90 kcal chỉ dành cho 25g (1 khẩu phần). Ăn hết gói 75g sẽ nạp 270 kcal.',
+        isCorrectAction: true,
+      },
+      {
+        id: 'opt-1-c',
+        actionText: 'Khuyên Minh chỉ nên uống nước lọc và vứt bỏ gói snack đi.',
+        isCorrectAction: false,
+      },
+    ],
+    expectedRationaleKeywords: [
+      'khẩu phần',
+      '3',
+      '270',
+      'nhân',
+      'gói',
+      'toàn bộ',
+      '25g',
+      '75g',
+    ],
+    explanation: 'Rất nhiều sản phẩm ghi năng lượng cho 1 khẩu phần nhỏ (ví dụ 25g = 90 kcal) để tạo cảm giác ít calo. Nếu gói có 3 khẩu phần và ăn hết cả gói thì phải nhân lên: 90 × 3 = 270 kcal.',
+    lessonLearned: 'Luôn kiểm tra "Số khẩu phần trong bao bì" trước khi nhìn vào con số calo!',
+  },
+  {
+    id: 'scenario-2-missing-expiry',
+    title: 'Tình huống 2: Hạn dùng bị mờ trên mép gói',
+    badge: 'An toàn & Hạn sử dụng',
+    situation: 'Mai chọn một túi bánh mì que. Mặt sau nhãn ghi: "HSD: Xem trên mối ép bao bì". Khi lật mép bao bì lên xem thì phần mực in ngày tháng bị cọ xát bay mất, chỉ còn thấy chữ "HSD: .../202...". Bánh nhìn bên ngoài vẫn còn mềm và thơm.',
+    labelSnippet: {
+      serving: '1 chiếc (50 g)',
+      expiration: 'Không thể đọc được ngày tháng cụ thể trên bao bì do mờ mực.',
+      notes: 'Bao bì nguyên vẹn, bánh thơm, không thấy mốc mắt thường.',
+    },
+    question: 'Em hãy hướng dẫn Mai xử lý trong tình huống này.',
+    options: [
+      {
+        id: 'opt-2-a',
+        actionText: 'Bánh ngửi thơm và không mốc thì cứ mua ăn bình thường vì hạn dùng chỉ là tương đối.',
+        isCorrectAction: false,
+      },
+      {
+        id: 'opt-2-b',
+        actionText: 'Tự suy đoán vì đang năm 2026 nên bánh chắc chắn còn hạn đến cuối năm.',
+        isCorrectAction: false,
+      },
+      {
+        id: 'opt-2-c',
+        actionText: 'Không chọn gói bánh này, đổi sang gói có date in rõ ràng hoặc báo nhân viên căng tin.',
+        isCorrectAction: true,
+      },
+    ],
+    expectedRationaleKeywords: [
+      'hạn dùng',
+      'hsd',
+      'mờ',
+      'không tự đoán',
+      'an toàn',
+      'ngộ độc',
+      'vi sinh',
+      'không thấy',
+    ],
+    explanation: 'Theo nguyên tắc an toàn thực phẩm của FoodLabel AI: Tuyệt đối không tự phỏng đoán hạn dùng khi dữ liệu không hiển thị rõ ràng. Vi khuẩn hoặc nấm mốc có thể đã phát triển vi thể mà mắt thường và khứu giác chưa nhận biết được.',
+    lessonLearned: 'Không có thông tin HSD rõ ràng = Không sử dụng. Không đoán mò!',
+  },
+  {
+    id: 'scenario-3-zero-sugar-claim',
+    title: 'Tình huống 3: Nhãn ghi "0g Đường" nhưng thành phần có gì?',
+    badge: 'Thành phần & Đường ẩn',
+    situation: 'Bác của Tuấn bị đái tháo đường cần hạn chế đường. Tuấn muốn mua một gói bánh quy ghi to ở mặt trước "0g ĐƯỜNG (Sugar Free)". Tuấn lật mặt sau đọc danh sách thành phần.',
+    labelSnippet: {
+      serving: 'Bánh quy lúa mạch 0g đường',
+      energy: '140 kcal / 35 g',
+      ingredients: 'Bột mì, dầu thực vật, siro mạch nha (maltitol syrup 18%), isomalt, bơ, muối.',
+      notes: 'Bảng dinh dưỡng ghi: Đường (Sugars): 0g; Carbohydrate tổng: 24g.',
+    },
+    question: 'Tuấn nên giải thích với bác của mình như thế nào?',
+    options: [
+      {
+        id: 'opt-3-a',
+        actionText: 'Bánh ghi 0g đường nên người tiểu đường có thể ăn thỏa thích bao nhiêu tùy ý.',
+        isCorrectAction: false,
+      },
+      {
+        id: 'opt-3-b',
+        actionText: 'Giải thích: 0g đường tự do nhưng bánh vẫn có carbohydrate từ bột mì và đường rượu maltitol có thể làm tăng đường huyết, vẫn cần ăn theo lượng bác sĩ tư vấn.',
+        isCorrectAction: true,
+      },
+      {
+        id: 'opt-3-c',
+        actionText: 'Bảo bác nhà sản xuất lừa dối, kiện nhà sản xuất vì 0g đường là sai sự thật.',
+        isCorrectAction: false,
+      },
+    ],
+    expectedRationaleKeywords: [
+      'bột mì',
+      'carbohydrate',
+      'tinh bột',
+      'maltitol',
+      'đường rượu',
+      'đường huyết',
+      'chất bột đường',
+      'calo',
+    ],
+    explanation: 'Nhãn "0g đường" (Sugar Free) chỉ có nghĩa là sản phẩm không chứa đường sucrose/glucose tự do theo ngưỡng quy định. Tuy nhiên sản phẩm làm từ bột mì (tinh bột) và siro đường rượu (maltitol/isomalt) vẫn chứa carbohydrate và sinh calo khi vào cơ thể.',
+    lessonLearned: 'Đừng chỉ nhìn tuyên bố "0g đường" ở mặt trước, hãy đọc danh sách thành phần và mục Carbohydrate ở mặt sau!',
+  },
+  {
+    id: 'scenario-4-unit-difference',
+    title: 'Tình huống 4: Ngũ cốc 110 kcal vs Ngũ cốc 360 kcal',
+    badge: 'Đối chiếu đơn vị & Quy tắc toán học',
+    situation: 'Lan đang so sánh 2 hộp ngũ cốc ăn sáng: Hộp A ghi "Năng lượng: 110 kcal". Hộp B ghi "Năng lượng: 360 kcal". Lan nói với mẹ: "Mẹ ơi mua hộp A đi, hộp A ít năng lượng hơn hộp B tận 3 lần!".',
+    labelSnippet: {
+      serving: 'Hộp A: Khẩu phần 30 g = 110 kcal | Hộp B: Giá trị trên 100 g = 360 kcal',
+      notes: 'Hộp A ghi theo 1 khẩu phần (30g). Hộp B ghi theo 100g tiêu chuẩn.',
+    },
+    question: 'Em hãy nhận xét về kết luận của bạn Lan.',
+    options: [
+      {
+        id: 'opt-4-a',
+        actionText: 'Lan nói hoàn toàn đúng vì 110 nhỏ hơn 360 rất nhiều.',
+        isCorrectAction: false,
+      },
+      {
+        id: 'opt-4-b',
+        actionText: 'Lan so sánh chưa đúng vì hai hộp dùng hai mốc khối lượng khác nhau (30g vs 100g). Cần quy đổi về cùng 100g trước khi so sánh.',
+        isCorrectAction: true,
+      },
+      {
+        id: 'opt-4-c',
+        actionText: 'Cả hai hộp ngũ cốc đều không có calo thực tế.',
+        isCorrectAction: false,
+      },
+    ],
+    expectedRationaleKeywords: [
+      'khẩu phần',
+      '100g',
+      '30g',
+      'quy đổi',
+      'đơn vị',
+      'so sánh',
+      'khối lượng',
+      'tỉ lệ',
+    ],
+    explanation: 'Hộp A ghi 110 kcal cho 30g. Nếu quy đổi ra 100g: (110 ÷ 30) × 100 ≈ 367 kcal! Như vậy mức năng lượng của hai hộp là hoàn toàn tương đương nhau (367 kcal vs 360 kcal trên 100g).',
+    lessonLearned: 'Khi so sánh hai nhãn thực phẩm, bắt buộc phải đưa về cùng một chuẩn khối lượng (ví dụ cùng tính trên 100g hoặc cùng 1 khẩu phần)!',
+  },
+];
